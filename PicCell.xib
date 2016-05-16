@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="idCellPic" rowHeight="100" id="G9y-wU-J5M" customClass="CustomCell" customModule="MappedOut" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="458" height="119"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="G9y-wU-J5M" id="hD2-cC-J80">
+                <rect key="frame" x="0.0" y="0.0" width="425" height="118.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Dxj-Am-flJ">
+                        <rect key="frame" x="18" y="11" width="60" height="102"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="60" id="4Cx-vX-h6f"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Image" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="khP-SM-IAc">
+                        <rect key="frame" x="378" y="49" width="47" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Dxj-Am-flJ" firstAttribute="leading" secondItem="hD2-cC-J80" secondAttribute="leadingMargin" constant="10" id="XVe-Ac-OKL"/>
+                    <constraint firstItem="Dxj-Am-flJ" firstAttribute="centerY" secondItem="hD2-cC-J80" secondAttribute="centerY" id="Yc9-nS-ctQ"/>
+                    <constraint firstAttribute="trailing" secondItem="khP-SM-IAc" secondAttribute="trailing" id="dMa-J7-DP8"/>
+                    <constraint firstItem="Dxj-Am-flJ" firstAttribute="bottom" secondItem="hD2-cC-J80" secondAttribute="bottomMargin" constant="3" id="j3h-1g-FHH"/>
+                    <constraint firstItem="khP-SM-IAc" firstAttribute="centerY" secondItem="hD2-cC-J80" secondAttribute="centerY" id="m80-pd-UTm"/>
+                    <constraint firstItem="Dxj-Am-flJ" firstAttribute="top" secondItem="hD2-cC-J80" secondAttribute="topMargin" constant="3" id="w7U-Rm-6lI"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" red="0.73333333329999995" green="0.31764705879999999" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <connections>
+                <outlet property="picCellImage" destination="Dxj-Am-flJ" id="ZED-c9-fVh"/>
+                <outlet property="picCellLabel" destination="khP-SM-IAc" id="ATo-un-fpE"/>
+            </connections>
+            <point key="canvasLocation" x="584" y="438.5"/>
+        </tableViewCell>
+    </objects>
+</document>
