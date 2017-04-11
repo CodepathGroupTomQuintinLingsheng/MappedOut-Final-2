@@ -73,7 +73,6 @@ class Event: NSObject {
             self.id = eventObj.objectId
             let owner = User()
             owner.addOwnedEvent(self.id!)
-            print(self.id)
         }
     }
     
@@ -105,7 +104,6 @@ class Event: NSObject {
         event.saveInBackgroundWithBlock { (done: Bool, error: NSError?) -> Void in
             if(done) {
                 success(event)
-                print("create success")
                 
                 let eventId = event.objectId
                 var eventsOwned = PFUser.currentUser()?.objectForKey("eventOwned") as? [String]
@@ -119,7 +117,6 @@ class Event: NSObject {
                 PFUser.currentUser()?.setObject(eventsOwned!, forKey: "eventOwned")
                 
                 PFUser.currentUser()?.fetchInBackground()
-                //                NSNotificationCenter.defaultCenter().postNotificationName(userDidCreatenewNotification, object: nil)
             }
         }
     }
