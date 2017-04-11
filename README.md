@@ -2,6 +2,8 @@
 Code path Group Project
 Demo! https://www.youtube.com/watch?v=jfoI6t-Yvc8
 
+Note that some features have been updated/added since the demo was made.
+
 ## User Stories
 
 The following **required** functionality is completed:
