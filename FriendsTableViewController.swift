@@ -33,16 +33,6 @@ class FriendsTableViewController: UIViewController, UITableViewDataSource, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //        let userId = PFUser.currentUser()?.objectId
-        //
-        //        PFCloud.callFunctionInBackground("addfriend", withParameters: ["targetuserId":"vnwA7A53ZB", "currentuserId":userId!]) { (result:AnyObject?, error:NSError?) in
-        //            print("result: ")
-        //            print(result)
-        //            if ((error) != nil) {
-        //                print(error?.localizedDescription)
-        //            }
-        //        }
-        
         tableView.dataSource = self
         tableView.delegate = self
         
@@ -97,7 +87,6 @@ class FriendsTableViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return filteredFriends.count
     }
     
@@ -127,13 +116,7 @@ class FriendsTableViewController: UIViewController, UITableViewDataSource, UITab
     
     func searchBarTextDidBeginEditing(searchBar: UISearchBar, searchText: String) {
         searchFriends(searchBar, searchText: searchText)
-        //        filteredFriends = friends
-        //        tableView.reloadData()
     }
-    
-    //resigns first responser
-    //text = ""
-    //searchbar.hidden = true
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         searchFriends(searchBar, searchText: searchText)
@@ -212,11 +195,9 @@ class FriendsTableViewController: UIViewController, UITableViewDataSource, UITab
             }
         }
         if(bool) {
-            //            cell.setSelected(true, animated: false)
             tableView.selectRowAtIndexPath(indexPath, animated: false, scrollPosition: .Top)
         }
         else{
-            //            cell.setSelected(false, animated: false)
             tableView.deselectRowAtIndexPath(indexPath, animated: false)
         }
     }
@@ -231,6 +212,7 @@ class FriendsTableViewController: UIViewController, UITableViewDataSource, UITab
             }
         }
         
+        //Below Popover ViewController was not yet implemented.  Keep in case it will be.
 //        if segue.identifier == "FriendsPopover" {
 //            let dvc = segue.destinationViewController as! FriendsCollectionViewController
 //            let controller = dvc.popoverPresentationController
@@ -283,10 +265,6 @@ class FriendsTableViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     
-    //    func didTap(sender: UITapGestureRecognizer) {
-    //        searchBar?.resignFirstResponder()
-    //    }
-    
     func searchFriends(searchBar: UISearchBar, searchText: String) {
         if(searchText == "") {
             if (segmentedControl.selectedSegmentIndex == 0) {
@@ -333,6 +311,8 @@ class FriendsTableViewController: UIViewController, UITableViewDataSource, UITab
         self.view.endEditing(true)
     }
     
+    //Below 2 functions (updateSelectedUserDisplay, addSelectedUsersDisplay()) involve counting and displaying
+    //the number of users selected.  Not yet working, but keep for later. 
     func updateSelectedUserDisplay() {
         //        let uniqueArray = Array(Set(selectedUsers))
         //        let count = uniqueArray.count
