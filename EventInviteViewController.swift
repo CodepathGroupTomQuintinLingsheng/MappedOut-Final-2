@@ -35,9 +35,7 @@ class EventInviteViewController: UIViewController, UITableViewDataSource, UITabl
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
         
-        
-//        navigationItem.titleView = segmentedControl
-        
+            
         user.getPublicAttendingEvents { (events: [Event]) in
             self.eventsAttending = events
         }
@@ -102,15 +100,7 @@ class EventInviteViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "CancelFromEvents" {
-//            let dvc = segue.destinationViewController as! UINavigationController
-//            let vc = dvc.viewControllers[0] as! FriendsTableViewController
-            
-//            vc.tableView.setEditing(true, animated: true)
-//            vc.updateButtons()
-//            vc.selectedUsers = invitedUsers
-        }
-        else if segue.identifier == "ConfirmFromEvents" {
+        if segue.identifier == "ConfirmFromEvents" {
             if let selectedEvent = selectedEvent {
 
                 
@@ -156,9 +146,6 @@ class EventInviteViewController: UIViewController, UITableViewDataSource, UITabl
         self.dismissViewControllerAnimated(true) { 
             if let selectedEvent = self.selectedEvent {
                 selectedEvent.inviteToEvent(self.invitedUsers, success: {
-//                    let dvc = self.parentViewController as! FriendsTableViewController
-//                    dvc.tableView.setEditing(false, animated: false)
-//                    dvc.updateButtons()
                     Drop.down("Friends Successfully Invited", state: DropState.Success, duration: 3, action: nil)
                 })
             }
