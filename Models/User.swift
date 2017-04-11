@@ -29,7 +29,6 @@ class User: PFUser {
     
     override init() {
         super.init()
-        //        self.name = PFUser.currentUser()?.username
         self.eventsOwned = PFUser.currentUser()?.objectForKey("eventOwned") as? [String]
         self.eventsAttending = PFUser.currentUser()?.objectForKey("eventsAttending") as? [String]
         self.eventsInvitedTo = PFUser.currentUser()?.objectForKey("eventsInvitedTo") as? [String]
@@ -38,19 +37,10 @@ class User: PFUser {
         self.propicFile = PFUser.currentUser()?.objectForKey("picture") as? PFFile
         self.coverpicFile = PFUser.currentUser()?.objectForKey("coverpicture") as? PFFile
 
-        //        self.username = PFUser.currentUser()?.username
         self.objectId = PFUser.currentUser()?.objectId
         self.followerIDs = PFUser.currentUser()?.objectForKey("followerIDs") as? [String]
         self.userObjectID = PFUser.currentUser()?.objectForKey("userObjectID") as? String
     }
-    
-    //    init(name: String?, propic: UIImage?, eventsAttending: [String]?, eventsOwned: [String]?) {
-    //        super.init()
-    //        self.name = name
-    //        self.propic = propic
-    //        self.eventsAttending = eventsAttending
-    //        self.eventsOwned = eventsOwned
-    //    }
     
     init(user: PFUser) {
         super.init()
@@ -112,25 +102,19 @@ class User: PFUser {
     }
     
     func addFriend(user: User) {
-        print(friendIDs)
         let id = user.objectId!
         if (friendIDs) != nil {
             self.friendIDs!.append(id)
         }else{
             friendIDs = [id]
         }
-        print(friendIDs)
         PFUser.currentUser()?.setObject(friendIDs!, forKey: "friendIDs")
         
         PFUser.currentUser()?.saveInBackgroundWithBlock({ (done:Bool, error:NSError?) in
-            if(done){
-                print("upload success")
-                
+            if(done){                
                 let query = PFQuery(className: "UserObject")
                 query.getObjectInBackgroundWithId(user.userObjectID!, block: { (object: PFObject?, error: NSError?) in
                     if let object = object {
-                        print("Object: ")
-                        print(object)
                         var userObj = UserObject(object: object)
                         var followerIDs = userObj.followerIDs
                         if followerIDs != nil {
@@ -139,37 +123,11 @@ class User: PFUser {
                         else {
                             followerIDs = [self.objectId!]
                         }
-                        print("Follower IDs: ")
-                        print(followerIDs)
+
                         object.setObject(followerIDs!, forKey: "followerIDs")
                         object.saveInBackground()
                     }
                 })
-                
-                //                let query = PFQuery(className: "_User")
-                //                query.whereKey("_id", equalTo: id)
-                //                query.getFirstObjectInBackgroundWithBlock({ (object: PFObject? ,error: NSError?) in
-                //                    var user = User(user: object as! PFUser)
-                //                    if let followerIDs = user.followerIDs {
-                //                        user.followerIDs!.append(self.objectId!)
-                //                        print("567")
-                //                    }
-                //                    else {
-                //                        user.followerIDs = [self.objectId!]
-                //                        print("8910")
-                //                        print(self.objectId!)
-                //                        print(user.followerIDs)
-                //                    }
-                //                    user.setObject(user.followerIDs!, forKey: "followerIDs")
-                //                    user.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) in
-                //                        if (success) {
-                //
-                //                        }
-                //                        else {
-                //                            print(error?.localizedDescription)
-                //                        }
-                //                    })
-                //                })
             }else{
                 print(error)
             }
@@ -177,7 +135,6 @@ class User: PFUser {
     }
     
     func removeFriend(user: User) {
-        print(friendIDs)
         let id = user.objectId!
         if (friendIDs) != nil {
             self.friendIDs! = self.friendIDs!.filter() { $0 != id }
@@ -187,7 +144,6 @@ class User: PFUser {
         
         PFUser.currentUser()?.saveInBackgroundWithBlock({ (done:Bool, error:NSError?) in
             if(done){
-                print("upload success")
                 let query = PFQuery(className: "UserObject")
                 query.getObjectInBackgroundWithId(user.userObjectID!, block: { (object: PFObject?, error: NSError?) in
                     if let object = object {
@@ -224,7 +180,7 @@ class User: PFUser {
         
         PFUser.currentUser()?.saveInBackgroundWithBlock({ (done:Bool, error:NSError?) in
             if(done){
-                print("upload success")
+                //pass
             }else{
                 print(error)
             }
@@ -241,7 +197,7 @@ class User: PFUser {
         
         PFUser.currentUser()?.saveInBackgroundWithBlock({ (done:Bool, error:NSError?) in
             if(done){
-                print("upload success")
+                //pass
             }else{
                 print(error)
             }
@@ -295,25 +251,6 @@ class User: PFUser {
                 })
             }
         }
-        
-        //        if let followerIDs = followerIDs {
-        //            let query = PFQuery(className: "_User")
-        //            query.whereKey("_id", containedIn: followerIDs)
-        //
-        //            query.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
-        //                if(error != true) {
-        //                    if let objects = objects {
-        //                        for object in objects {
-        //                            followers.append(User(user: object as! PFUser))
-        //                        }
-        //                    }
-        //                }
-        //                else {
-        //                    print(error?.localizedDescription)
-        //                }
-        //                success(followers: followers)
-        //            })
-        //        }
     }
     
     
